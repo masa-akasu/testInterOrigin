@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>name here!</title>
+    <script>
+        function request() {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "https://www.389.to/php/ajax/ajax.php?id=1あいうえお", true); // リクエストの送信先およびメソッドの指定
+            //xhr.open("GET", "http://localhost/surf_broadcast/ajax/ajax.php?id=あああ", true); // リクエストの送信先およびメソッドの指定
+
+            //xhr.setRequestHeader("Access-Control-Allow-Origin", "*"); ※   驚いた事にこれは不要だった
+
+            xhr.send(); // リクエストの送信
+
+            xhr.onreadystatechange = () => {
+                if ((xhr.readyState === 4) && (xhr.status === 200)) { // 通信が終了かつレスポンスのステータスコードが200のとき
+                    alert(xhr.responseText); // レスポンスの内容を alert で表示する
+                }
+            }
+        }
+    </script>
+</head>
+
+<body onload="request()">
+</body>
+
+</html>
