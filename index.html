@@ -8,8 +8,8 @@
         function request() {
             var xhr = new XMLHttpRequest();
 
-            xhr.open("GET", "https://www.389.to/php/ajax/ajax.php?id=1あいうえお", true); // リクエストの送信先およびメソッドの指定
-            //xhr.open("GET", "http://localhost/surf_broadcast/ajax/ajax.php?id=あああ", true); // リクエストの送信先およびメソッドの指定
+            //xhr.open("GET", "https://www.389.to/php/ajax/ajax.php?id=1あいうえお", true); // リクエストの送信先およびメソッドの指定
+            xhr.open("GET", "http://localhost/surf_broadcast/ajax/ajaxJson.php", true); // リクエストの送信先およびメソッドの指定
 
             //xhr.setRequestHeader("Access-Control-Allow-Origin", "*"); ※   驚いた事にこれは不要だった
 
@@ -21,11 +21,54 @@
                 }
             }
         }
+
+        function onInp(){
+            //alert('onInp');
+            
+            //  global test
+            //fetch('https://www.389.to/php/ajax/ajax.php?id=かきくけこ')
+
+            //  local test
+            fetch('//localhost/surf_broadcast/ajax/ajaxJson.php')
+            //.then(response => {
+            .then(response => {
+                if(response.ok){                //  このif文がないと、loopせず直ぐreturnしてしまう
+                    //return response.text();    //文字列として取得
+                    return response.json();      //jsonとして取得
+                }else{
+                    return Promise.reject(new Error('エラーです'));
+                }
+            })
+            .then((value) => {
+                //let str = decodeURI(value);
+                console.log('43 ', value); // "Success"
+                for( ele in value){
+                    console.log('46', ele + ' ' + value[ele] );
+                }
+                }, function(value) {
+                // 呼び出されない
+            });		
+                
+
+        }   
+
+        // test promize
+        // var p = Promise.resolve([1,2,3]);
+        // Promise.resolve('Success').then((value) => {
+        //     console.log('63 ', value); // "Success"
+        //     }, function(value) {
+        //     // 呼び出されない
+        // });
+
+        
+        // console.log(decodeURI("\u592a\u90ce"));
+
     </script>
 </head>
 
 
-<body onload="request()">
+<body >
+    <button onclick="onInp()" >PUSH</button>
 </body>
 
 </html>
