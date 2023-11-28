@@ -47,6 +47,10 @@ app.get("/B", (req, res) => {
   //console.log('9');
   res.sendFile(__dirname + "/indexB.html");
 });
+app.get("/C", (req, res) => {
+  //console.log('9');
+  res.sendFile(__dirname + "/indexC.html");
+});
 /**
  * [イベント] ユーザーが接続
  */
